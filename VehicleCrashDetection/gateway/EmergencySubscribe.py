@@ -15,7 +15,7 @@ MQTT_USERNAME = "A1E-SN2m1TPckxGwihF3m8L8EosDhbs3US"  # Put here your Ubidots TO
 MQTT_PASSWORD = ""  # Leave this in blank
 # TOPIC = "/v1.6/devices/homeiotgateway/tempsensor"
 TOPIC = "/v1.6/devices/"
-DEVICE_LABEL = "projectiot/actuatetemprature/lv"
+DEVICE_LABEL = "emergency/notifyemergency /lv"
 TLS_CERT_PATH = "/home/ashwath/Downloads/connectedDocs/ubidots.cert"
 '''
 Functions to process incoming and outgoing streaming
