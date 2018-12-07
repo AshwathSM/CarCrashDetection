@@ -1,0 +1,69 @@
+[ubidots.cloud]
+apiKey= Not Set
+userNameToken = Not Set
+authToken= Not Set
+host= things.ubidots.com
+port= 1883
+
+[smtp.cloud]
+host = smtp.gmail.com
+port = 465
+fromAddr = notsoawesomeprogrammer@gmail.com
+toAddr  = notsoawesomeprogrammer@gmail.com
+toMediaAddr = Not Set
+toTxtAddr = Not Set
+authToken = Ammumma@123
+enableAuth = True
+enableCrypt = True
+
+[mqtt.cloud]
+userNameToken = Not Set
+authToken= Not Set
+host= test.mosquitto.org
+port= 1883
+securePort= 1884
+defaultQos= 2
+enableAuth= False
+enableCrypt = False
+
+[coap.cloud]
+userNameToken = Not Set
+authToken= Not Set
+host= californium.eclipse.org
+port= 5683
+securePort= 5684
+enableAuth = False
+enableCrypt= False
+
+[mqtt.gateway]
+userNameToken = Not Set
+authToken= Not Set
+host= 127.0.0.1
+port= 1883
+securePort= 1884
+defaultQos= 2
+enableCrypt = False
+
+[coap.gateway]
+userNameToken = Not Set
+authToken= Not Set
+host= 127.0.0.1
+port= 5683
+securePort= 5684
+enableCrypt = False
+
+[coap.device]
+userNameToken = Not Set
+authToken= Not Set
+host= 127.0.0.1
+port= 5683
+securePort= 5684
+enableCrypt = False
+
+[gateway]
+enableLogging = True
+
+[device]
+enableEmulator = True
+pollCycleSecs = 60
+nominalTemp = 20
