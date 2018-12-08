@@ -3,11 +3,9 @@ Created on Dec 6, 2018
 
 @author: ashwath
 
-This is the application class
-This is the main application to be run on the gateway device
 Instantiates the CoapServerConnector
-This server waits for any information from the constrained device
-and sends the data to the Mqtt publish application
+This server waits for any information from the Mqtt subscribe of gateway (from cloud) device
+and sends the data to the Coap server on the constrained device
 '''
 
 import CoapServerConnector
