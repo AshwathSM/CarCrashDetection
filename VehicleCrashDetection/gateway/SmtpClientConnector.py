@@ -16,11 +16,17 @@ class SmtpClientConnector(object):
 
 
     def __init__(self):
+        '''
+        load the configuration properties file on creation
+        '''
         self.config = ConfigUtil.ConfigUtil('../../../data/ConnectedDevicesConfig.props')
         self.config.loadConfig()
         print('Configuration data...\n' + str(self.config))
+        
+        '''
     #This method will read all the configuration details from the file ConnectedDevicesConfig.props
     #Read the mail host, to mailID, from mailID, authentication tokens from the configuration file (private file)
+    '''
     def publishMessage(self, topic, data):
         host= self.config.getProperty(ConfigConst.SMTP_CLOUD_SECTION,ConfigConst.HOST_KEY)
         port= self.config.getProperty(ConfigConst.SMTP_CLOUD_SECTION,ConfigConst.PORT_KEY)

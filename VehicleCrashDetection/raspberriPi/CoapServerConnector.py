@@ -18,9 +18,7 @@ class CoapServerConnector(CoAP):
     
     def __init__(self, ipAddr = "0.0.0.0", port = 5683, multicast = False):
         
-        #get the connection details by reading the configuration files
-        self.config = ConfigUtil.ConfigUtil(ConfigConst.DEFAULT_CONFIG_FILE_NAME)
-        self.config.loadConfig()
+        
         print('Configuration data...\n' + str(self.config))
         
         #initialize the coap server with the default port(5683) and ip address (any outside IPv4)
