@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqttClient
+from gateway.SmtpClientConnector import SmtpClientConnector
 import time
 import json
 import ssl
@@ -31,6 +32,9 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_publish(client, userdata, result):
+    #Instantiate SmtpClient class and send the mail to the user
+    connector = SmtpClientConnector()    
+    connector.publishMessage("Crash Details sent to the emergency")
     print("Published!")
 
 

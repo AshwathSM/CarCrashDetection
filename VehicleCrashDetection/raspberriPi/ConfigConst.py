@@ -6,7 +6,7 @@ Created on Sep 23, 2018
 
 
 SECTION_SEPARATOR= '.'
-DEFAULT_CONFIG_FILE_NAME = '../../../CoapApps/ConnectedDevicesConfig.props'
+DEFAULT_CONFIG_FILE_NAME = './ConnectedDevicesConfig.props'
 CLOUD= 'cloud'
 MQTT= 'mqtt'
 COAP= 'coap'

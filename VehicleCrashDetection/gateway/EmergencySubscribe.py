@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqttClient
-import labs.module06.CoapClientApp
+import gateway.CoapClientApp
 import time
 import json
 import ssl
@@ -36,7 +36,7 @@ def on_message(client, userdata, message):
     fh = open("/home/ashwath/Downloads/connectedDocs/cloudTOMqttGate.txt", "w")
     fh.write("fom cloud to Mqtt gateway")
     fh.close()
-    labs.module06.CoapClientApp.runNotifyDevice()
+    gateway.CoapClientApp.runNotifyDevice()
     
 def on_subscribe(self, client, userdata, result):
     print("Subscribe Success!")

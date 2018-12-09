@@ -6,7 +6,7 @@ Created on Dec 4, 2018
 
 # import psutil
 from time import sleep
-from labs.module06 import CoapClientConnector
+from gateway import CoapClientConnector
 
 def runNotifyDevice():
     #Instantiate the thread class (create the thread)

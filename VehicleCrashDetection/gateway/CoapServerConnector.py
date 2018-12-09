@@ -4,10 +4,10 @@ Created on Dec 5, 2018
 @author: ashwath
 '''
 from coapthon.server.coap import CoAP
-from labs.common import ConfigUtil
-from labs.common import ConfigConst
+from gateway import ConfigUtil
+from gateway import ConfigConst
 
-from labs.module06.CoapResourceHandler import TestCoapResource
+from gateway.CoapResourceHandler import TestCoapResource
 
 class CoapServerConnector(CoAP):
     

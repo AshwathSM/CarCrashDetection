@@ -4,8 +4,8 @@ Created on Dec 6, 2018
 @author: ashwath
 '''
 
-from labs.module06.CoapServerConnector import CoapServerConnector
-import labs.module07.EmergencySubscribe 
+from gateway.CoapServerConnector import CoapServerConnector
+import gateway.EmergencySubscribe 
 
 def main():
     ipAddr       = "0.0.0.0"
@@ -14,7 +14,7 @@ def main():
     coapServer   = None
         
     try:
-        labs.module07.EmergencySubscribe.notifyDevice()
+        gateway.EmergencySubscribe.notifyDevice()
         coapServer = CoapServerConnector(ipAddr, port, useMulticast)
         try:
             coapServer.listen(10)

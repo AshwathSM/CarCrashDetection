@@ -6,8 +6,9 @@ Created on Dec 4, 2018
 
 from coapthon.client.helperclient import HelperClient
 
-from labs.common import ConfigUtil
-from labs.common import ConfigConst
+
+from gateway import ConfigConst
+from gateway import ConfigUtil
 
 class CoapClientConnector(object):
     '''

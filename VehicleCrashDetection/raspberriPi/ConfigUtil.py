@@ -6,7 +6,7 @@ Created on Sep 21, 2018
 import configparser
 import os
 
-DEFAULT_CONFIG_FILE = "../CoapApps/ConnectedDevicesConfig.props"
+DEFAULT_CONFIG_FILE = "./ConnectedDevicesConfig.props"
 
 
 class ConfigUtil(object):

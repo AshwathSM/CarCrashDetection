@@ -4,7 +4,7 @@ Created on Dec 6, 2018
 @author: ashwath
 '''
 from coapthon.resources.resource import Resource
-import labs.module07.EmergencyPublish 
+import gateway.EmergencyPublish 
 
 class TestCoapResource(Resource):
     
@@ -41,7 +41,7 @@ class TestCoapResource(Resource):
 
         file_handler.close()
         
-        labs.module07.EmergencyPublish.emrgencyPub(35)
+        gateway.EmergencyPublish.emrgencyPub(35)
                 
         return res
     
