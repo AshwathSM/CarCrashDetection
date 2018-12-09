@@ -38,6 +38,10 @@ class CoapClientConnector(object):
         self.config=ConfigUtil.ConfigUtil(ConfigConst.DEFAULT_CONFIG_FILE_NAME)
         self.config.loadConfig()
         
+        
+        self.host = self.config.getProperty(ConfigConst.COAP_DEVICE_SECTION,ConfigConst.HOST_KEY)
+        self.port = self.config.getProperty(ConfigConst.COAP_DEVICE_SECTION,ConfigConst.PORT_KEY)
+        
     
     def initClient(self):
         '''
@@ -46,7 +50,7 @@ class CoapClientConnector(object):
         try:
             #create a client (HelperClient from coapthon) to connect 
             #to server at the specified address and port
-            self.client = HelperClient(server=("10.0.0.70", 5683))
+            self.client = HelperClient(server=(self.host, self.port))
             
             #print details of client
             print("created coap client ref: "+ str(self.client))
@@ -79,7 +83,7 @@ class CoapClientConnector(object):
         else:
             print("No response for the GET request from the server using resource: "+ resource)
         
-        #end the client connection after the completion of the transaction    
+        #end the client connection after the completion of the transaction
         self.client.stop()
         
     
@@ -155,6 +159,12 @@ class CoapClientConnector(object):
             
         #clear the client connection and stop the client
         self.client.stop()
+        
+    def disconnectClient(self):
+        '''
+        Close the client connection
+        '''
+        self.client.close()  
         
     
 

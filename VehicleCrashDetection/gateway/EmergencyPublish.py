@@ -1,5 +1,7 @@
 import paho.mqtt.client as mqttClient
 from gateway.SmtpClientConnector import SmtpClientConnector
+from gateway import ConfigConst
+from gateway import ConfigUtil
 import time
 import json
 import ssl
@@ -8,15 +10,11 @@ import ssl
 global variables
 '''
 
+
+
+
 connected = False  # Stores the connection statu
-BROKER_ENDPOINT = "things.ubidots.com"
-TLS_PORT = 8883  # Secure port
-MQTT_USERNAME = "A1E-SN2m1TPckxGwihF3m8L8EosDhbs3US"  # Put here your Ubidots TOKEN
-MQTT_PASSWORD = ""  # Leave this in blank
-# TOPIC = "/v1.6/devices/homeiotgateway/tempsensor"
-TOPIC = "/v1.6/devices/"
-DEVICE_LABEL = "emergency/crashdetected"
-TLS_CERT_PATH = "/home/ashwath/Downloads/connectedDocs/ubidots.cert"
+
 '''
 Functions to process incoming and outgoing streaming
 '''
@@ -38,14 +36,18 @@ def on_publish(client, userdata, result):
     print("Published!")
 
 
-def connect(mqtt_client, mqtt_username, mqtt_password, broker_endpoint, port):
+def connect(mqtt_client, mqtt_username, mqtt_password, broker_endpoint, port, cert):
     global connected
+    
+    
+    
+    
 
     if not connected:
         mqtt_client.username_pw_set(mqtt_username, password=mqtt_password)
         mqtt_client.on_connect = on_connect
         mqtt_client.on_publish = on_publish
-        mqtt_client.tls_set(ca_certs=TLS_CERT_PATH, certfile=None,
+        mqtt_client.tls_set(ca_certs=cert, certfile=None,
                             keyfile=None, cert_reqs=ssl.CERT_REQUIRED,
                             tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
         mqtt_client.tls_insecure_set(False)
@@ -78,6 +80,19 @@ def publish(mqtt_client, topic, payload):
 
 def emrgencyPub(valtopub):
     
+    config=ConfigUtil.ConfigUtil(ConfigConst.DEFAULT_CONFIG_FILE_NAME)
+    config.loadConfig()
+    
+    BROKER_ENDPOINT = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.HOST_KEY)
+    TLS_PORT = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.PORT_KEY)
+    
+    MQTT_USERNAME = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.USER_NAME_TOKEN_KEY)
+    MQTT_PASSWORD = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.USER_AUTH_TOKEN_KEY)
+    TLS_CERT_PATH = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.CERT_PATH)
+    TOPIC = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.PUB_TOPIC)
+    DEVICE_LABEL = config.getProperty(ConfigConst.MQTT_CLOUD_SECTION,ConfigConst.PUB_DEVICE)
+    
+    
     print('from gateway Mqtt publish to cloud')
     
     payload = json.dumps({"value": valtopub })
@@ -87,7 +102,7 @@ def emrgencyPub(valtopub):
     mqtt_client = mqttClient.Client()
 
     if not connect(mqtt_client, MQTT_USERNAME,
-                   MQTT_PASSWORD, BROKER_ENDPOINT, TLS_PORT):
+                   MQTT_PASSWORD, BROKER_ENDPOINT, TLS_PORT, TLS_CERT_PATH):
         return False
     i=0
     while(i<4):
